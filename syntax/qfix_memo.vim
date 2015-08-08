@@ -21,8 +21,10 @@ if exists('g:qfixmemo_title')
   exe "syn match qfixmemoTitleBullet contained '^\\s*[".g:qfixmemo_title."]\\+'"
 endif
 
-hi def link qfixmemoSubTitle    Identifier
-hi def link qfixmemoTitleBullet Special
+"hi def link qfixmemoSubTitle    Identifier
+"hi def link qfixmemoTitleBullet Special
+hi def link qfixmemoSubTitle    Type
+hi def link qfixmemoTitleBullet PreProc
 
 " URLとファイル
 syn match qfixmemoTextFile '\([A-Za-z]:[/\\]\|\~[/\\]\)[-0-9a-zA-Z!#$%&'()*+,./:;=?@_~{}[\]\\]\+'
@@ -39,7 +41,8 @@ syn match qfixmemoTextQuote '^\s*>\(\s.*\|$\)'
 hi def link qfixmemoTextQuote Comment
 
 " リスト (行頭の '-' '+')
-syn region qfixmemoTextList start='^\s*[-+]\+\s*' end='\s:' end='$' contains=qfixmemoTextListBullet,qfixmemoTextListDefinition,qfixmemoTextUrl,qfixmemoTextFile keepend
+"syn region qfixmemoTextList start='^\s*[-+]\+\s*' end='\s:' end='$' contains=qfixmemoTextListBullet,qfixmemoTextListDefinition,qfixmemoTextUrl,qfixmemoTextFile keepend
+syn region qfixmemoTextList start='^\s*[+]\+\s*' end='\s:' end='$' contains=qfixmemoTextListBullet,qfixmemoTextListDefinition,qfixmemoTextUrl,qfixmemoTextFile keepend
 syn match qfixmemoTextListBullet contained '^\s*[-+*]\+\s*'
 syn match qfixmemoTextListColon  contained '\s:'
 syn match qfixmemoTextListDefinition contained '\s:' contains=qfixmemoTextListColon
@@ -105,18 +108,60 @@ syn match qfixmemoChapterBullet contained '^\s*[0-9][0-9.]* $'
 syn match qfixmemoChapterBullet contained '^\s*\([0-9.*]\+\|[.*]\+\)'
 syn match qfixmemoMarkdownBullet contained '^\s*\*\+'
 
-hi def link qfixmemoChapterNumber   PreProc
+"hi def link qfixmemoChapterNumber   PreProc
 hi def link qfixmemoChapterCategory Label
 hi def link qfixmemoChapterBullet   Type
 hi def link qfixmemoMarkdownList    Normal
 hi def link qfixmemoMarkdownBullet  Type
 
+" harad custom
+" highlight foldlevel1 ctermfg=136
+" highlight foldlevel2 ctermfg=4
+" highlight foldlevel3 ctermfg=2
+" highlight foldlevel4 ctermfg=60
+" highlight foldlevel5 ctermfg=208
+" highlight foldlevel6 ctermfg=18
+" highlight foldlevel7 ctermfg=25
+highlight foldlevel1 ctermfg=166
+highlight foldlevel2 ctermfg=4
+highlight foldlevel3 ctermfg=2
+highlight foldlevel4 ctermfg=9
+highlight foldlevel5 ctermfg=3
+highlight foldlevel6 ctermfg=60
+highlight foldlevel7 ctermfg=208
+highlight foldlevel8 ctermfg=25
+highlight foldlevel9 ctermfg=141
+highlight foldlevel10 ctermfg=226
+highlight foldlevel11 ctermfg=160
+highlight foldlevel12 ctermfg=1
+highlight foldlevel13 ctermfg=196
+highlight foldlevel14 ctermfg=203
+
+
+syn match foldlevel1 /^*\{1}[^*].*/
+syn match foldlevel2 /^*\{2}[^*].*/
+syn match foldlevel3 /^*\{3}[^*].*/
+syn match foldlevel4 /^*\{4}[^*].*/
+syn match foldlevel5 /^*\{5}[^*].*/
+syn match foldlevel6 /^*\{6}[^*].*/
+syn match foldlevel7 /^*\{7}[^*].*/
+syn match foldlevel8 /^*\{8}[^*].*/
+syn match foldlevel9 /^*\{9}[^*].*/
+syn match foldlevel10 /^*\{10}[^*].*/
+syn match foldlevel11 /^*\{11}[^*].*/
+syn match foldlevel12 /^*\{12}[^*].*/
+syn match foldlevel13 /^*\{13}[^*].*/
+syn match foldlevel14 /^*\{13}[^*].*/
+
+
 "----------
 " markdown style
 "----------
 if !exists('g:qfixmemo_title') || g:qfixmemo_title != '#'
-  syn region qfixmemoSubTitle start='^[#]\+' end='$' contains=qfixmemoTitleBullet,qfixmemoCategory keepend
+  "syn region qfixmemoSubTitle start='^[#]\+' end='$' contains=qfixmemoTitleBullet,qfixmemoCategory keepend
+  syn region qfixmemoSubTitle start='[#]\+' end='$' contains=qfixmemoTitleBullet,qfixmemoCategory keepend
   syn match qfixmemoTitleBullet contained '^\s*[#]\+'
+  "syn match qfixmemoTitleBullet contained '[#]\+'
 endif
 
 syn match qfixmemoCode display "`.\{-}`"
@@ -126,7 +171,7 @@ syn match qfixmemoCodeSpace display "^    .*"
 syn match qfixmemoDelimiter '^```\s*[[:alnum:]]*$'
 
 hi def link qfixmemoCode         Comment
-hi def link qfixmemoCodeSpace    Comment
+"hi def link qfixmemoCodeSpace    Comment
 hi def link qfixmemoDelimiter    DiffText
 
 "----------
