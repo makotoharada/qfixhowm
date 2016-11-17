@@ -38,7 +38,8 @@ hi def link qfixmemoTextUrl  Underlined
 
 " 引用文 (行頭の'> ')
 syn match qfixmemoTextQuote '^\s*>\(\s.*\|$\)'
-hi def link qfixmemoTextQuote Comment
+"hi def link qfixmemoTextQuote Comment
+hi def link qfixmemoTextQuote Include
 
 " リスト (行頭の '-' '+')
 "syn region qfixmemoTextList start='^\s*[-+]\+\s*' end='\s:' end='$' contains=qfixmemoTextListBullet,qfixmemoTextListDefinition,qfixmemoTextUrl,qfixmemoTextFile keepend
@@ -159,7 +160,7 @@ syn match foldlevel14 /^*\{13}[^*].*/
 "----------
 if !exists('g:qfixmemo_title') || g:qfixmemo_title != '#'
   "syn region qfixmemoSubTitle start='^[#]\+' end='$' contains=qfixmemoTitleBullet,qfixmemoCategory keepend
-  syn region qfixmemoSubTitle start='[#]\+' end='$' contains=qfixmemoTitleBullet,qfixmemoCategory keepend
+  syn region qfixmemoSubTitle start='[#] \+' end='$' contains=qfixmemoTitleBullet,qfixmemoCategory keepend
   syn match qfixmemoTitleBullet contained '^\s*[#]\+'
   "syn match qfixmemoTitleBullet contained '[#]\+'
 endif
