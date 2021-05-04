@@ -159,8 +159,8 @@ function! QFixMRU(...)
   let dirmode = g:QFixMRU_DirMode
   let basedir = expand('%:p:h')
   let entries = g:QFixMRU_Entries
-  if count
-    let entries = count
+  if v:count
+    let entries = v:count
   endif
   for index in range (1, a:0)
     if a:{index} == '^\s*$'
@@ -505,8 +505,8 @@ function! QFixMRUMoveCursor(pos, ...)
   else
     let tpattern = QFixMRUGetTitleRegxp(fnamemodify(expand('%'), ':e'))
     let cnt = 1
-    if count
-      let cnt = count
+    if v:count
+      let cnt = v:count
     endif
     for i in range(1, cnt)
       if a:pos == 'next'

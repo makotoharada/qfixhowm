@@ -306,8 +306,8 @@ endfunction
 
 function! QFixHowmOpenMenu(...)
   call qfixmemo#Init()
-  if count > 0
-    let g:QFixHowm_ShowScheduleMenu = count
+  if v:count > 0
+    let g:QFixHowm_ShowScheduleMenu = v:count
   endif
   redraw | echo 'QFixHowm : Open menu...'
   if exists('*QFixWinnr')
@@ -571,8 +571,8 @@ endfunction
 
 function! s:HowmMenuCR() range
   let save_cursor = getpos('.')
-  if count
-    call cursor(count, 1)
+  if v:count
+    call cursor(v:count, 1)
   endif
   call search('[^\s]', 'cb', line('.'))
   call search('[^\s]', 'cw', line('.'))
