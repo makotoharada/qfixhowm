@@ -297,36 +297,30 @@ function! QFixNormalizePath(path, ...)
 endfunction
 
 function! s:QFixMRUEntryRange(file, lnum, title, tpattern)
-  " let lnum = a:lnum
-  " let tpattern = a:tpattern
-  " if s:prevfname != a:file
-  "   silent! %delete _
-  "   let mfile = a:file
-  "   if bufloaded(mfile)
-  "     let glist = getbufline(mfile, 1, '$')
-  "     call setline(1, glist)
-  "   else
-  "     call s:read(mfile)
-  "   endif
-  " endif
-  " let s:prevfname = a:file
-  " call cursor(lnum, 1)
-  " let title = escape(a:title, '[].*~\#')
-  " silent! let min = search(title, 'cbW')
-  " if min == 0
-  "   silent! let min = search(title, 'cW')
-  " endif
-  " let max = search(tpattern, 'W') - 1
-  " if max < 1
-  "   let max = line('$')
-  " endif
-  " return [min, max]
-  " echo "QFixMRUEntryRange"
-  " echo title
-  " echo tpattern
-  " echo min
-  " echo max
-  return [1, line('$')]
+  let lnum = a:lnum
+  let tpattern = a:tpattern
+  if s:prevfname != a:file
+    silent! %delete _
+    let mfile = a:file
+    if bufloaded(mfile)
+      let glist = getbufline(mfile, 1, '$')
+      call setline(1, glist)
+    else
+      call s:read(mfile)
+    endif
+  endif
+  let s:prevfname = a:file
+  call cursor(lnum, 1)
+  let title = escape(a:title, '[].*~\#')
+  silent! let min = search(title, 'cbW')
+  if min == 0
+    silent! let min = search(title, 'cW')
+  endif
+  let max = search(tpattern, 'W') - 1
+  if max < 1
+    let max = line('$')
+  endif
+  return [min, max]
 endfunction
 
 function! s:read(mfile)
